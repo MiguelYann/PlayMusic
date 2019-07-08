@@ -51,6 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
   ];
 
   Music actuallyMusic;
+  double position = 0;
 
   @override
   void initState() {
@@ -86,13 +87,25 @@ class _MyHomePageState extends State<MyHomePage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 addIcon(Icons.fast_rewind, 44),
-                addIcon(Icons.play_arrow,75),
+                addIcon(Icons.play_arrow, 75),
                 addIcon(Icons.fast_forward, 45),
               ],
             )),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[addText('0:00', 1), addText('4:20', 1)],
+            ),
+            Slider(
+              activeColor: Colors.red,
+              inactiveColor: Colors.white,
+              min:0,
+              max: 10.0,
+              value: position,
+              onChanged: (double d) {
+                setState(() {
+                  position = d;
+                }); 
+              },
             )
           ],
         ),
@@ -114,6 +127,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   IconButton addIcon(IconData iconItem, double size) {
-    return IconButton(iconSize: size, icon:new Icon(iconItem), onPressed: () {});
+    return IconButton(
+        iconSize: size, icon: new Icon(iconItem), onPressed: () {});
   }
 }
